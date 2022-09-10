@@ -1,5 +1,8 @@
 extends Node
 #-------------------------------------------------------------------------------------------------#
+#Constants
+const TILE_SIZE = 24
+#Variables
 var actions = {
 	ACCEPT = "ui_accept",
 	MENU = "ui_cancel",
@@ -12,5 +15,3 @@ var actions = {
 	RUN = "ui_run",
 	JUMP = "ui_jump"
 }
-#Constants
-const TILE_SIZE = 24

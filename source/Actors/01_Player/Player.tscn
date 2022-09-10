@@ -1437,6 +1437,19 @@ script = ExtResource( 7 )
 position = Vector2( -7.62939e-06, 1.96768 )
 shape = SubResource( 1 )
 
+[node name="MainCamera" type="Camera2D" parent="."]
+visible = false
+current = true
+zoom = Vector2( 0.25, 0.25 )
+limit_left = 0
+limit_top = 0
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 7.0
+drag_margin_left = 0.0
+drag_margin_right = 0.0
+
 [node name="Facing" type="Node2D" parent="."]
 
 [node name="Sprite_Torso" type="Sprite" parent="Facing"]
@@ -1525,19 +1538,6 @@ position = Vector2( 0, 9.5 )
 scale = Vector2( 0.25, 1 )
 enabled = true
 
-[node name="MainCamera" type="Camera2D" parent="."]
-visible = false
-current = true
-zoom = Vector2( 0.25, 0.25 )
-limit_left = 0
-limit_top = 0
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 7.0
-drag_margin_left = 0.0
-drag_margin_right = 0.0
-
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
@@ -1559,11 +1559,15 @@ parameters/conditions/Landing = false
 parameters/conditions/Running = false
 parameters/conditions/Walking = false
 
-[node name="CoyoteTimer" type="Timer" parent="."]
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="CoyoteTimer" type="Timer" parent="Timers"]
 wait_time = 0.1
 one_shot = true
 
-[node name="StateOutput" type="Label" parent="."]
+[node name="Outputs" type="Node2D" parent="."]
+
+[node name="StateOutput" type="Label" parent="Outputs"]
 margin_left = -19.7789
 margin_top = -23.8073
 margin_right = 20.2211

@@ -3,7 +3,7 @@ extends StateMachine
 #------------------------------------------------------------------------------#
 #Variables
 #OnReady Variables
-onready var stateLabel: Label = p.get_node("StateOutput")
+onready var stateLabel: Label = p.get_node("Outputs/StateOutput")
 #------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
@@ -36,19 +36,10 @@ func _input(event: InputEvent) -> void:
 #State Machine
 #State Logistics
 func stateLogic(delta):
-	p.moveDirection()
-	p.handle_movement()
 	p.apply_gravity(delta)
 	p.apply_movement()
+	p.apply_facing()
 #State Transitions
-func basicMove():
-	if p.motion.x == 0: return states.idle
-	if !p.is_grounded:
-		if p.motion.y < 0: return states.jump
-		elif p.motion.y > 0: return states.fall
-	elif p.motion.x != 0:
-		if p.max_speed == p.walk_speed: return states.walk
-		elif p.max_speed == p.run_speed: return states.run
 # warning-ignore:unused_argument
 func transitions(delta):
 	match(state):
@@ -87,3 +78,12 @@ func assign_animation():
 	p.animTree["parameters/conditions/Running"] = states.run
 	p.animTree["parameters/conditions/Jumping"] = states.jump
 	p.animTree["parameters/conditions/Falling"] = states.fall
+#------------------------------------------------------------------------------#
+func basicMove():
+	if p.motion.x == 0: return states.idle
+	if !p.is_grounded:
+		if p.motion.y < 0: return states.jump
+		elif p.motion.y > 0: return states.fall
+	elif p.motion.x != 0:
+		if p.max_speed == p.walk_speed: return states.walk
+		elif p.max_speed == p.run_speed: return states.run
