@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Black Rage Instrumental Full.mp3-f303e4e54c9f62616ea11f5b5c5b244b.mp3str"
+
+[deps]
+
+source_file="res://assets/SFX/_Music/StringStorm/Black Rage Instrumental Full.mp3"
+dest_files=[ "res://.import/Black Rage Instrumental Full.mp3-f303e4e54c9f62616ea11f5b5c5b244b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

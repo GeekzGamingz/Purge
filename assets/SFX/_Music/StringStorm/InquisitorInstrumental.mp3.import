@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/InquisitorInstrumental.mp3-8fb623fb73f5db56590332040a0571fc.mp3str"
+
+[deps]
+
+source_file="res://assets/SFX/_Music/StringStorm/InquisitorInstrumental.mp3"
+dest_files=[ "res://.import/InquisitorInstrumental.mp3-8fb623fb73f5db56590332040a0571fc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
