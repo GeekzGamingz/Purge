@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/JumpPack3.wav-cc2b02cf7799c111fe1e86572b0d38f7.sample"
+
+[deps]
+
+source_file="res://assets/SFX/JumpPack/JumpPack3.wav"
+dest_files=[ "res://.import/JumpPack3.wav-cc2b02cf7799c111fe1e86572b0d38f7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

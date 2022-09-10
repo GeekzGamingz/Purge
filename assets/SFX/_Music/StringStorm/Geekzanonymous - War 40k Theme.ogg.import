@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Geekzanonymous - War 40k Theme.ogg-d1af6f976d25500b2d04c0c072db72e5.oggstr"
+
+[deps]
+
+source_file="res://assets/SFX/_Music/StringStorm/Geekzanonymous - War 40k Theme.ogg"
+dest_files=[ "res://.import/Geekzanonymous - War 40k Theme.ogg-d1af6f976d25500b2d04c0c072db72e5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

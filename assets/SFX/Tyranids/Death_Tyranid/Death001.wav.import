@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Death001.wav-7232e21f2455bb9868de833a88c8e679.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Tyranids/Death_Tyranid/Death001.wav"
+dest_files=[ "res://.import/Death001.wav-7232e21f2455bb9868de833a88c8e679.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

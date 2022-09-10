@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BossDeath.wav-8ad4d14b2686f6dd330cd26591007018.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Tyranids/Death_Tyranid/BossDeath.wav"
+dest_files=[ "res://.import/BossDeath.wav-8ad4d14b2686f6dd330cd26591007018.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

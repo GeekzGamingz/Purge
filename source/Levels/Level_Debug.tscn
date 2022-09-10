@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/Actors/Player/SpaceMarine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/Tilesets/Pinkboard.tres" type="TileSet" id=2]
+
+[node name="Level_Debug" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 24, 24 )
+format = 1
+tile_data = PoolIntArray( 65547, 0, 196622, 196609, 0, 14, 262145, 0, 196612, 262146, 0, 196620, 262147, 0, 196609, 262148, 0, 196609, 262149, 0, 196620, 262150, 0, 196609, 262151, 0, 196609, 262152, 0, 196609, 262153, 0, 196609, 262154, 0, 196609, 262155, 0, 196621 )
+
+[node name="SpaceMarine" parent="." instance=ExtResource( 1 )]
+position = Vector2( 154.655, 76.5571 )

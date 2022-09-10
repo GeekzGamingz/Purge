@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Ptui.wav-254f731cf9ee56b7d66e408873a23fea.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Tyranids/Ripper/Ptui.wav"
+dest_files=[ "res://.import/Ptui.wav-254f731cf9ee56b7d66e408873a23fea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

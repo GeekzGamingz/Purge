@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death6.wav-422ca3494e8f34a9de9c041166e018fc.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Death_Human/death6.wav"
+dest_files=[ "res://.import/death6.wav-422ca3494e8f34a9de9c041166e018fc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

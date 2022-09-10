@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sfx_exp_shortest_soft8.wav-30904062011dbda3f81612d511ceb3dd.sample"
+
+[deps]
+
+source_file="res://assets/SFX/Bolter/sfx_exp_shortest_soft8.wav"
+dest_files=[ "res://.import/sfx_exp_shortest_soft8.wav-30904062011dbda3f81612d511ceb3dd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
