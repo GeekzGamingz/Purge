@@ -1,3 +1,4 @@
+#Inherits PlayerMovement Code
 extends PlayerMovement
 class_name PlayerCombat
 #------------------------------------------------------------------------------#

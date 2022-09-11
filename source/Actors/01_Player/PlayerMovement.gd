@@ -73,7 +73,6 @@ func apply_movement():
 	found_ledge = check_ledge()
 	found_wall = check_wall()
 	if !is_grounded && was_on_floor: coyoteTimer.start()
-	if is_grounded: is_jumping = false
 #------------------------------------------------------------------------------#
 #Player Weight
 func weight():

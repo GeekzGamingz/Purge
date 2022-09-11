@@ -1,4 +1,4 @@
-#Handles 2D Bodies
+#Inherits KinematicBody2D Code
 extends KinematicBody2D
 class_name Actor
 #------------------------------------------------------------------------------#
@@ -24,7 +24,6 @@ var jump_duration = 0.5
 #Bool Variables
 var is_flipped: bool = false
 var is_grounded: bool = false
-var is_jumping: bool = false
 var found_wall: bool = false
 var found_ledge: bool = false
 #OnReady Variables

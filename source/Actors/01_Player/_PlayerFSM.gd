@@ -22,12 +22,11 @@ func _process(_delta: float) -> void:
 #------------------------------------------------------------------------------#
 #Input Handler
 func _input(event: InputEvent) -> void:
-	if [states.idle, states.walk, states.run,
-		states.fall].has(state) && !p.is_jumping:
+	if [states.idle, states.walk, states.walkBack,
+		states.fall, states.run, states.runBack].has(state) && p.is_grounded:
 		#Jumping
 		if event.is_action_pressed(G.actions.JUMP):
-			if p.is_grounded || !p.coyoteTimer.is_stopped():
-				p.coyoteTimer.stop()
+			if !p.coyoteTimer.is_stopped(): p.coyoteTimer.stop()
 			p.motion.y = p.max_jumpMotion
 	if [states.jump].has(state):
 	#Jump Interrupt
@@ -52,12 +51,10 @@ func transitions(delta):
 		states.run, states.runBack: return basicMove()
 		#Jumping
 		states.jump:
-			p.is_jumping = true
 			if p.is_grounded: return states.idle
 			elif p.motion.y >= 0: return states.fall
 		#Falling
 		states.fall:
-			p.is_jumping = true if p.coyoteTimer.is_stopped() else false
 			if p.is_grounded: return states.idle
 			elif p.motion.y < 0: return states.jump
 	return null
@@ -78,17 +75,15 @@ func stateEnter(newState, oldState):
 func stateExit(oldState, newState):
 	pass
 #------------------------------------------------------------------------------#
-#Assign Animations
-func assign_animation():
-	p.animTree["parameters/conditions/Jumping"] = states.jump
-	p.animTree["parameters/conditions/Falling"] = states.fall
-#------------------------------------------------------------------------------#
 #Basic Movement
 func basicMove():
-	if p.motion.x == 0: return states.idle
+	#Idle
+	if p.motion.x == 0 && p.is_grounded: return states.idle
+	#Verticle Movement
 	if !p.is_grounded:
 		if p.motion.y < 0: return states.jump
 		elif p.motion.y > 0: return states.fall
+	#Horizontal Movement
 	elif p.motion.x != 0:
 		if p.max_speed == p.walk_speed:
 			#Flipped
