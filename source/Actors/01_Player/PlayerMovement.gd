@@ -1,10 +1,21 @@
 #Inherits Actor Code
 extends Actor
+class_name PlayerMovement
 #------------------------------------------------------------------------------#
 #Variables
 var direction = 0
 var dir_prev = 0
 var dir_new = 0
+#Animations
+var animations = {
+	IDLE = "idle",
+	WALK = "walk",
+	WALKBACK = "walkBack",
+	RUN = "run",
+	RUNBACK = "runBack",
+	JUMP = "jump_takeOff",
+	FALL = "jump_fall"
+}
 #OnReady Variables
 #Sprites
 onready var shoulder: Node2D = $Facing/Shoulder
@@ -20,6 +31,29 @@ func _ready() -> void:
 #Applies Gravity
 func apply_gravity(delta):
 	motion.y += gravity * delta
+#------------------------------------------------------------------------------#
+#Applies Facing
+func apply_facing():
+	#Flipped
+	if mouse_global.x < self.global_position.x:
+		is_flipped = true
+		#Torso
+		for sprite in facing.get_children():
+			if sprite.get_class() == "Sprite": sprite.flip_h = true
+		#Detectors
+		for detector in wallDetectors.get_children():
+			detector.position.x = -3.5
+			detector.cast_to.y = -5
+	#Unflipped
+	elif mouse_global.x > self.global_position.x:
+		is_flipped = false
+		#Torso
+		for sprite in facing.get_children():
+			if sprite.get_class() == "Sprite": sprite.flip_h = false
+		#Detectors
+		for detector in wallDetectors.get_children():
+			detector.position.x = 3.5
+			detector.cast_to.y = 5
 #------------------------------------------------------------------------------#
 #Player Movement
 func apply_movement():
@@ -40,31 +74,6 @@ func apply_movement():
 	found_wall = check_wall()
 	if !is_grounded && was_on_floor: coyoteTimer.start()
 	if is_grounded: is_jumping = false
-#------------------------------------------------------------------------------#
-#Applies Facing
-func apply_facing():
-	if get_global_mouse_position().x < self.global_position.x:
-		is_flipped = true
-		for sprite in facing.get_children():
-			if sprite.get_class() == "Sprite":
-				sprite.flip_h = true
-		for sprite in shoulder.get_children():
-			if sprite.get_class() == "Sprite":
-				sprite.flip_h = true
-		for detector in wallDetectors.get_children():
-			detector.position.x = -3.5
-			detector.cast_to.y = -5
-	else:
-		is_flipped = false
-		for sprite in facing.get_children():
-			if sprite.get_class() == "Sprite":
-				sprite.flip_h = false
-		for sprite in shoulder.get_children():
-			if sprite.get_class() == "Sprite":
-				sprite.flip_h = false
-		for detector in wallDetectors.get_children():
-			detector.position.x = 3.5
-			detector.cast_to.y = 5
 #------------------------------------------------------------------------------#
 #Player Weight
 func weight():

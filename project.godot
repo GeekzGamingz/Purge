@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://source/Actors/Actor.gd"
 }, {
+"base": "PlayerMovement",
+"class": "PlayerCombat",
+"language": "GDScript",
+"path": "res://source/Actors/01_Player/PlayerCombat.gd"
+}, {
+"base": "Actor",
+"class": "PlayerMovement",
+"language": "GDScript",
+"path": "res://source/Actors/01_Player/PlayerMovement.gd"
+}, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
@@ -21,6 +31,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Actor": "",
+"PlayerCombat": "",
+"PlayerMovement": "",
 "StateMachine": ""
 }
 

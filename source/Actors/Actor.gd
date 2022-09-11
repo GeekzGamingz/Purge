@@ -7,8 +7,11 @@ const FLOOR_NORMAL = Vector2.UP
 const SLOPE_SLIDE_STOP = 25.0
 #------------------------------------------------------------------------------#
 #Variables
+var mouse_global = Vector2.ZERO
+var mouse_local = Vector2.ZERO
+var mouse_direction = Vector2.ZERO
 #Movement
-var motion = Vector2()
+var motion = Vector2.ZERO
 var gravity
 var walk_speed = 2.5 * G.TILE_SIZE
 var run_speed = 7 * G.TILE_SIZE
@@ -38,6 +41,13 @@ onready var spritePlayer: AnimationPlayer = $AnimationPlayers/AnimationPlayer
 onready var animTree: AnimationTree = $AnimationPlayers/AnimationTree
 onready var playBack = animTree.get("parameters/playback")
 onready var current_state = playBack.get_current_node()
+#------------------------------------------------------------------------------#
+#Actor Processes
+func _process(_delta: float) -> void:
+	#Mouse Detection
+	mouse_global = get_global_mouse_position()
+	mouse_local = get_local_mouse_position()
+	mouse_direction = (mouse_global - self.global_position).normalized()
 #------------------------------------------------------------------------------#
 #World Detection
 #Ground Detection
