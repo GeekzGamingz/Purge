@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://source/02_Actors/01_Player/assets/02_JumpPack/spacegunner-idle-jumppack-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://source/02_Actors/01_Player/assets/03_Arms/spacegunner-idle-arms-Sheet.png" type="Texture" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://source/02_Actors/01_Player/assets/04_Gun/02_Boomshot/joump-TakeOff-boomstick-Sheet.png" type="Texture" id=37]
 [ext_resource path="res://source/02_Actors/01_Player/_PlayerFSM.gd" type="Script" id=38]
 [ext_resource path="res://source/03_Objects/01_Projectiles/01_Bolt/assets/muzzleflash-gun-Sheet.png" type="Texture" id=39]
+[ext_resource path="res://source/03_Objects/01_Projectiles/02_Slug/assets/muzzleflash-boomstick-Sheet.png" type="Texture" id=40]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 3.97698
@@ -1825,6 +1826,47 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
+[sub_resource type="Animation" id=33]
+resource_name = "boomshot"
+loop = true
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Facing/Shoulder/Sprite_Arms/Sprite_MzFlash:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Facing/Shoulder/Sprite_Arms/Sprite_MzFlash:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Facing/Shoulder/Sprite_Arms/Sprite_MzFlash:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+}
+
 [sub_resource type="Animation" id=32]
 resource_name = "represser"
 length = 0.225
@@ -1989,7 +2031,7 @@ frame = 3
 [node name="Sprite_MzFlash" type="Sprite" parent="Facing/Shoulder/Sprite_Arms"]
 visible = false
 position = Vector2( 16.137, -1.21338 )
-texture = ExtResource( 39 )
+texture = ExtResource( 40 )
 hframes = 7
 
 [node name="Sprite_Repressor" type="Sprite" parent="Facing/Shoulder"]
@@ -2081,6 +2123,7 @@ anims/walkBack = SubResource( 24 )
 [node name="MuzzlePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 autoplay = "represser"
 anims/RESET = SubResource( 31 )
+anims/boomshot = SubResource( 33 )
 anims/represser = SubResource( 32 )
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayers"]
@@ -2099,6 +2142,9 @@ one_shot = true
 
 [node name="WeaponTimer" type="Timer" parent="Timers"]
 wait_time = 0.25
+one_shot = true
+
+[node name="BoomshotTimer" type="Timer" parent="Timers"]
 one_shot = true
 
 [node name="Outputs" type="Node2D" parent="."]
