@@ -8,9 +8,13 @@ var projectile_scene
 export var projectile_speed = 1750
 #OnReady Variables
 onready var muzzlePlayer: AnimationPlayer = $AnimationPlayers/MuzzlePlayer
+onready var boomshotTimer: Timer = $Timers/BoomshotTimer
+
 #Preloaded Scenes
 var bolt_scene = preload(
 	"res://source/03_Objects/01_Projectiles/01_Bolt/Bolt.tscn")
+var slug_scene = preload(
+	"res://source/03_Objects/01_Projectiles/02_Slug/ScatterShot.tscn")
 #------------------------------------------------------------------------------#
 #Aim
 func apply_aim():
@@ -36,15 +40,20 @@ func apply_aim():
 func apply_shoot():
 	#Represser
 	if Input.is_action_pressed(G.actions.SHOOT):
+		sprite_mz.visible = true #Show Flash
 		match(current_weapon):
 			"REPRESSER":
 				if weaponTimer.is_stopped():
 					weaponTimer.start()
 					muzzlePlayer.play("represser") #Muzzle Flash
-					sprite_mz.visible = true
 					projectile_scene = bolt_scene
 					spawn_projectile()
-			"BOOMSHOT": pass
+			"BOOMSHOT":
+				if boomshotTimer.is_stopped():
+					boomshotTimer.start()
+					muzzlePlayer.play("boomshot") #Muzzle Flash
+					projectile_scene = slug_scene
+					spawn_projectile()
 			"SWEEPER": pass
 	if Input.is_action_just_released(G.actions.SHOOT):
 		sprite_mz.visible = false #Hide Flash
@@ -57,5 +66,5 @@ func spawn_projectile():
 	projectile.position = projectile_pos
 	projectile.rotation = atan2(mouse_direction.y, mouse_direction.x)
 	get_tree().get_root().add_child(projectile)
-	projectile.motion = mouse_direction * projectile_speed
-	
+	for i in projectile.get_children():
+		i.motion = (mouse_direction * projectile_speed).rotated(i.rotation)
