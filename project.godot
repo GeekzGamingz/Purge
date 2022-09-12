@@ -12,40 +12,52 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Actor",
 "language": "GDScript",
-"path": "res://source/Actors/Actor.gd"
+"path": "res://source/02_Actors/_Actor.gd"
 }, {
-"base": "PlayerMovement",
+"base": "KinematicBody2D",
+"class": "KinObject",
+"language": "GDScript",
+"path": "res://source/03_Objects/_KinObject.gd"
+}, {
+"base": "PlayerWeapons",
 "class": "PlayerCombat",
 "language": "GDScript",
-"path": "res://source/Actors/01_Player/PlayerCombat.gd"
+"path": "res://source/02_Actors/01_Player/PlayerCombat.gd"
 }, {
 "base": "Actor",
 "class": "PlayerMovement",
 "language": "GDScript",
-"path": "res://source/Actors/01_Player/PlayerMovement.gd"
+"path": "res://source/02_Actors/01_Player/PlayerMovement.gd"
+}, {
+"base": "PlayerMovement",
+"class": "PlayerWeapons",
+"language": "GDScript",
+"path": "res://source/02_Actors/01_Player/PlayerWeapons.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
-"path": "res://source/Actors/StateMachine.gd"
+"path": "res://source/02_Actors/_StateMachine.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
+"KinObject": "",
 "PlayerCombat": "",
 "PlayerMovement": "",
+"PlayerWeapons": "",
 "StateMachine": ""
 }
 
 [application]
 
 config/name="Purge"
-run/main_scene="res://source/Levels/Level_Debug.tscn"
+run/main_scene="res://source/01_Levels/Level_Debug.tscn"
 config/icon="res://icon_Purge.png"
 config/windows_native_icon="res://icon_Purge.ico"
 
 [autoload]
 
-G="*res://source/Globals.gd"
+G="*res://source/_Globals.gd"
 
 [display]
 
@@ -71,6 +83,7 @@ texture={
 "process/HDR_as_SRGB": false,
 "process/fix_alpha_border": true,
 "process/invert_color": false,
+"process/normal_map_invert_y": false,
 "process/premult_alpha": false,
 "size_limit": 0,
 "stream": false,
@@ -86,7 +99,8 @@ ui_accept={
 }
 ui_select={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
+ ]
 }
 ui_cancel={
 "deadzone": 0.5,
@@ -95,12 +109,12 @@ ui_cancel={
 }
 ui_focus_next={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 ui_focus_prev={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":true,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 ui_left={
@@ -147,6 +161,11 @@ ui_run={
 ui_jump={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_primary_attack={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 
