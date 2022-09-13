@@ -17,6 +17,8 @@ func _ready() -> void:
 	stateAdd("fall")
 	stateAdd("ledge")
 	stateAdd("wallSlide")
+	stateAdd("packFlight")
+	stateAdd("packFall")
 	call_deferred("stateSet", states.idle)
 #------------------------------------------------------------------------------#
 #State Label
@@ -53,6 +55,7 @@ func stateLogic(delta):
 		states.wallSlide: 
 			p.apply_gravity(delta)
 			p.motion.y *= 0.75
+		states.packFlight: if Input.is_action_pressed(G.actions.JUMP): p.jump()
 #State Transitions
 # warning-ignore:unused_argument
 func transitions(delta):
@@ -66,20 +69,26 @@ func transitions(delta):
 			if p.is_grounded: return states.idle
 			elif p.motion.y >= 0: return states.fall
 		#Falling
-		states.fall:
+		states.fall, states.packFall:
 			if p.is_grounded: return states.idle
 			elif p.motion.y < 0: return states.jump
 			elif p.found_ledge: return states.ledge
 			elif p.found_wall: return states.wallSlide
+			elif Input.is_action_just_pressed(G.actions.JUMP):
+				if !p.safeFall.is_colliding():
+					return states.packFlight
 		#Walls
 		states.ledge, states.wallSlide:
 			if !p.safeSlide.is_colliding(): return states.fall
-			if (Input.is_action_just_pressed(G.actions.DOWN) ||
+			elif (Input.is_action_just_pressed(G.actions.DOWN) ||
 				p.safeFall.is_colliding()):
 				return states.fall
-			if Input.is_action_just_pressed(G.actions.JUMP):
+			elif Input.is_action_just_pressed(G.actions.JUMP):
 				p.jump()
 				return states.jump
+		#Flight
+		states.packFlight:
+			if p.motion.y > 0: return states.packFall
 	return null
 #Enter State
 # warning-ignore:unused_argument
@@ -91,6 +100,8 @@ func stateEnter(newState, oldState):
 		states.walkBack: p.playBack.travel(p.animations.WALKBACK)
 		states.runBack: p.playBack.travel(p.animations.RUNBACK)
 		states.fall: p.playBack.start(p.animations.FALL)
+		states.packFlight: p.playBack.start(p.animations.FLIGHT)
+		states.packFall: p.playBack.start(p.animations.PACKFALL)
 		states.jump:
 			if p.found_wall: p.playBack.start(p.animations.JUMP)
 			else: p.playBack.start(p.animations.WALLJUMP)

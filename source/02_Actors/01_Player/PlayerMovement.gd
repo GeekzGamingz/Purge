@@ -17,7 +17,9 @@ var animations = {
 	FALL = "jump_fall",
 	LEDGE = "wall_ledge",
 	WALLSLIDE = "wall_slide",
-	WALLJUMP = "wall_jump"
+	WALLJUMP = "wall_jump",
+	FLIGHT = "pack_flight",
+	PACKFALL = "pack_fall"
 }
 #OnReady Variables
 onready var safeSlide: RayCast2D = $Facing/SafeSlideDetector
