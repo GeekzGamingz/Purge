@@ -58,11 +58,9 @@ func apply_shoot():
 					projectile_scene = slug_scene
 					spawn_projectile()
 			"SWEEPER":
-#				if weaponTimer.is_stopped():
-					weaponTimer.start()
-					muzzlePlayer.play("sweeper") #Muzzle Flash
-					projectile_scene = napalm_scene
-					spawn_projectile()
+				muzzlePlayer.play("sweeper") #Muzzle Flash
+				projectile_scene = napalm_scene
+				spawn_projectile()
 	if Input.is_action_just_released(G.actions.SHOOT):
 		yield(spritePlayer, "animation_finished")
 		sprite_mz.visible = false #Hide Flash
