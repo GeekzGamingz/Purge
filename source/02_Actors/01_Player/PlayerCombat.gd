@@ -5,16 +5,19 @@ class_name PlayerCombat
 #Variables
 var projectile_scene
 #Exported Variables
-export var projectile_speed = 1750
+export var projectile_speed = 500
+onready var ammoOrigin: Position2D = $Facing/Shoulder/Sprite_Arms/AmmoOrigin
 #OnReady Variables
 onready var muzzlePlayer: AnimationPlayer = $AnimationPlayers/MuzzlePlayer
 onready var boomshotTimer: Timer = $Timers/BoomshotTimer
 
 #Preloaded Scenes
-var bolt_scene = preload(
+var bolt_scene = preload( #Represser RapidFire Scene
 	"res://source/03_Objects/01_Projectiles/01_Bolt/Bolt.tscn")
-var slug_scene = preload(
+var slug_scene = preload( #Boomshot Scattershot Scene
 	"res://source/03_Objects/01_Projectiles/02_Slug/ScatterShot.tscn")
+var napalm_scene = preload( #FlameSweeper Napalm Scene
+	"res://source/03_Objects/01_Projectiles/03_Napalm/Napalm.tscn")
 #------------------------------------------------------------------------------#
 #Aim
 func apply_aim():
@@ -54,15 +57,19 @@ func apply_shoot():
 					muzzlePlayer.play("boomshot") #Muzzle Flash
 					projectile_scene = slug_scene
 					spawn_projectile()
-			"SWEEPER": pass
+			"SWEEPER":
+#				if weaponTimer.is_stopped():
+					weaponTimer.start()
+					muzzlePlayer.play("sweeper") #Muzzle Flash
+					projectile_scene = napalm_scene
+					spawn_projectile()
 	if Input.is_action_just_released(G.actions.SHOOT):
+		yield(spritePlayer, "animation_finished")
 		sprite_mz.visible = false #Hide Flash
-		match(current_weapon):
-			"REPRESSER": pass
 #Spawn Projectile
 func spawn_projectile():
 	var projectile = projectile_scene.instance() #Sets Ammo
-	var projectile_pos = sprite_arms.global_position #Sets PoS
+	var projectile_pos = ammoOrigin.global_position #Sets PoS
 	projectile.position = projectile_pos
 	projectile.rotation = atan2(mouse_direction.y, mouse_direction.x)
 	get_tree().get_root().add_child(projectile)

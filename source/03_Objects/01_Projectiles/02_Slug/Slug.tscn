@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://source/03_Objects/01_Projectiles/02_Slug/Slug.gd" type="Script" id=1]
 [ext_resource path="res://source/03_Objects/01_Projectiles/02_Slug/assets/boomstick-ouchseed-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/03_Objects/01_Projectiles/01_Bolt/assets/ouchseed-impact-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://source/03_Objects/01_Projectiles/02_Slug/assets/boomstick-ouchseed-impact-Sheet.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 0.495073
@@ -82,7 +83,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 3 ) ]
+"values": [ ExtResource( 4 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
@@ -108,6 +109,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
 
 [node name="Slug" type="KinematicBody2D"]
 z_index = -1
@@ -117,8 +130,7 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -4, 0 )
-texture = ExtResource( 2 )
-hframes = 5
+texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
