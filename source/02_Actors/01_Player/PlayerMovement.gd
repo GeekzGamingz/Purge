@@ -14,9 +14,15 @@ var animations = {
 	RUN = "run",
 	RUNBACK = "runBack",
 	JUMP = "jump_takeOff",
-	FALL = "jump_fall"
+	FALL = "jump_fall",
+	LEDGE = "wall_ledge",
+	WALLSLIDE = "wall_slide",
+	WALLJUMP = "wall_jump",
+	FLIGHT = "pack_flight",
+	PACKFALL = "pack_fall"
 }
 #OnReady Variables
+onready var safeSlide: RayCast2D = $Facing/SafeSlideDetector
 #Timers
 onready var coyoteTimer: Timer = $Timers/CoyoteTimer
 #------------------------------------------------------------------------------#
@@ -32,34 +38,42 @@ func apply_gravity(delta):
 #------------------------------------------------------------------------------#
 #Applies Facing
 func apply_facing():
-	#Flipped
-	if mouse_global.x < self.global_position.x:
-		is_flipped = true
-		#Torso
-		for sprite in facing.get_children():
-			if sprite.get_class() == "Sprite": sprite.flip_h = true
-		#Detectors
-		for detector in wallDetectors.get_children():
-			detector.position.x = -3.5
-			detector.cast_to.y = -5
-	#Unflipped
-	elif mouse_global.x > self.global_position.x:
-		is_flipped = false
-		#Torso
-		for sprite in facing.get_children():
-			if sprite.get_class() == "Sprite": sprite.flip_h = false
-		#Detectors
-		for detector in wallDetectors.get_children():
-			detector.position.x = 3.5
-			detector.cast_to.y = 5
+	if mouse_global.x < self.global_position.x: flip() #Flipped
+	elif mouse_global.x > self.global_position.x: unflip() #Unflipped
+#Flip
+func flip():
+	is_flipped = true
+	#Torso
+	for sprite in facing.get_children():
+		if sprite.get_class() == "Sprite": sprite.flip_h = true
+	#Detectors
+	for detector in wallDetectors.get_children():
+		detector.position.x = -3.5
+		detector.cast_to.y = -5
+	safeSlide.position.x = 3.5
+	safeSlide.cast_to.y = 5
+#Unflip
+func unflip():
+	is_flipped = false
+	#Torso
+	for sprite in facing.get_children():
+		if sprite.get_class() == "Sprite": sprite.flip_h = false
+	#Detectors
+	for detector in wallDetectors.get_children():
+		detector.position.x = 3.5
+		detector.cast_to.y = 5
+	safeSlide.position.x = -3.5
+	safeSlide.cast_to.y = -5
 #------------------------------------------------------------------------------#
 #Player Movement
-func apply_movement():
+func handle_movement():
 	#Direction
 	dir_prev = direction
 	direction = (int(Input.is_action_pressed(G.actions.RIGHT)) -
 				(int(Input.is_action_pressed(G.actions.LEFT))))
 	dir_new = direction
+#Apply Movement
+func apply_movement():
 	#Motion
 	motion.x = lerp(motion.x, max_speed * direction, weight())
 	motion = move_and_slide(motion, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
@@ -67,10 +81,14 @@ func apply_movement():
 	if Input.is_action_just_released(G.actions.RUN): max_speed = walk_speed
 	#World Checks
 	var was_on_floor = is_grounded
-	is_grounded = check_grounded()
-	found_ledge = check_ledge()
-	found_wall = check_wall()
+	is_grounded = check_grounded() #Checks for Ground
+	found_ledge = check_ledge() #Checks for Ledge
+	found_wall = check_wall() #Checks for Wall
 	if !is_grounded && was_on_floor: coyoteTimer.start()
+#Jump
+func jump():
+	if !coyoteTimer.is_stopped(): coyoteTimer.stop()
+	motion.y = max_jumpMotion
 #------------------------------------------------------------------------------#
 #Player Weight
 func weight():

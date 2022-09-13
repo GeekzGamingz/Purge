@@ -19,7 +19,7 @@ onready var weaponTimer: Timer = $Timers/WeaponTimer
 #------------------------------------------------------------------------------#
 #Weapon Selector
 func apply_weapon(event):
-	if weaponTimer.is_stopped():
+	if weaponTimer.is_stopped(): #Wait to Switch Again
 		if event.is_action_pressed(G.actions.NEXT):
 			weaponTimer.start()
 			weapon_select += 1
