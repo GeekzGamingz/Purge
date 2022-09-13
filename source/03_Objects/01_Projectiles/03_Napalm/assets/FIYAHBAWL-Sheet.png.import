@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/FIYAH-muzzleflashquestionmark-Sheet.png-ccd98e652c22d71aada4eb5e5cc69b64.stex"
+path="res://.import/FIYAHBAWL-Sheet.png-604de5c86bdd120a750246490a5b80da.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Objects/FIYAH-muzzleflashquestionmark-Sheet.png"
-dest_files=[ "res://.import/FIYAH-muzzleflashquestionmark-Sheet.png-ccd98e652c22d71aada4eb5e5cc69b64.stex" ]
+source_file="res://source/03_Objects/01_Projectiles/03_Napalm/assets/FIYAHBAWL-Sheet.png"
+dest_files=[ "res://.import/FIYAHBAWL-Sheet.png-604de5c86bdd120a750246490a5b80da.stex" ]
 
 [params]
 

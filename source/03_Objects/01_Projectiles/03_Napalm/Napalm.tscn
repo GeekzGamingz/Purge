@@ -1,16 +1,15 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://source/03_Objects/01_Projectiles/01_Bolt/Bolt.gd" type="Script" id=1]
-[ext_resource path="res://source/03_Objects/01_Projectiles/01_Bolt/assets/ouchseed-Sheet.png" type="Texture" id=2]
-[ext_resource path="res://source/03_Objects/01_Projectiles/01_Bolt/assets/ouchseed-impact-Sheet.png" type="Texture" id=3]
+[ext_resource path="res://source/03_Objects/01_Projectiles/03_Napalm/Napalm.gd" type="Script" id=1]
+[ext_resource path="res://source/03_Objects/01_Projectiles/03_Napalm/assets/FIYAHBAWL-impact-Sheet.png" type="Texture" id=2]
+[ext_resource path="res://source/03_Objects/01_Projectiles/03_Napalm/assets/FIYAHBAWL-Sheet.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 0.495073
 height = 1.03446
 
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 0.489885
-height = 1.02945
+[sub_resource type="CircleShape2D" id=6]
+radius = 10.0565
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -29,49 +28,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "idle"
-length = 0.165
-loop = true
-step = 0.035
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ ExtResource( 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 5 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.035, 0.07, 0.105, 0.14 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "impact"
-length = 0.1
+length = 0.225
+step = 0.025
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
@@ -94,7 +52,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 9 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:frame")
@@ -103,10 +61,51 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "impact"
+length = 0.15
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.025, 0.05, 0.075, 0.1, 0.125 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Sprite:z_index")
@@ -121,39 +120,42 @@ tracks/3/keys = {
 "values": [ 1 ]
 }
 
-[node name="RapidFire" type="YSort"]
+[node name="FlameSweep" type="YSort"]
 
-[node name="Bolt" type="KinematicBody2D" parent="."]
+[node name="Napalm" type="KinematicBody2D" parent="."]
 z_index = -1
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="Bolt"]
-position = Vector2( -5, 0 )
-texture = ExtResource( 3 )
+[node name="Sprite" type="Sprite" parent="Napalm"]
+position = Vector2( 12, 0 )
+texture = ExtResource( 2 )
+hframes = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bolt"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Napalm"]
 rotation = 1.5708
 shape = SubResource( 1 )
 disabled = true
 
-[node name="LightAttack" type="Area2D" parent="Bolt"]
+[node name="LightAttack" type="Area2D" parent="Napalm"]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bolt/LightAttack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Napalm/LightAttack"]
+position = Vector2( 10, 0 )
 rotation = 1.5708
 shape = SubResource( 6 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Bolt"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Napalm"]
 autoplay = "idle"
 anims/RESET = SubResource( 4 )
 anims/idle = SubResource( 5 )
 anims/impact = SubResource( 3 )
 
-[node name="SelfDestruct" type="Timer" parent="Bolt"]
-wait_time = 0.5
+[node name="SelfDestruct" type="Timer" parent="Napalm"]
+wait_time = 0.2
+one_shot = true
 
-[connection signal="body_entered" from="Bolt/LightAttack" to="Bolt" method="_on_LightAttack_body_entered"]
-[connection signal="timeout" from="Bolt/SelfDestruct" to="Bolt" method="_on_SelfDestruct_timeout"]
+[connection signal="body_entered" from="Napalm/LightAttack" to="Napalm" method="_on_LightAttack_body_entered"]
+[connection signal="timeout" from="Napalm/SelfDestruct" to="Napalm" method="_on_SelfDestruct_timeout"]
