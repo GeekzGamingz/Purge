@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://source/02_Actors/01_Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://source/01_Levels/01-01_ Tutorial/Tutorial.tscn" type="PackedScene" id=2]
+
+[node name="World" type="Node2D"]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Zones" type="YSort" parent="YSort"]
+
+[node name="Tutorial" parent="YSort/Zones" instance=ExtResource( 2 )]
+
+[node name="WorldEvents" type="YSort" parent="YSort"]
+
+[node name="WorldObjects" type="YSort" parent="YSort"]
+
+[node name="WorldKinematics" type="YSort" parent="YSort"]
+
+[node name="Player" parent="YSort/WorldKinematics" instance=ExtResource( 1 )]
