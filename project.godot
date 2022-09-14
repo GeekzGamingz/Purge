@@ -51,7 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Purge"
-run/main_scene="res://source/01_Levels/Level_Debug.tscn"
+run/main_scene="res://source/01_Levels/Level_World.tscn"
 config/icon="res://icon_Purge.png"
 config/windows_native_icon="res://icon_Purge.ico"
 
