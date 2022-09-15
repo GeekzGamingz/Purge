@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/swarmylad-ptui-Sheet.png-4d121fa825df984435638e63df15242b.stex"
+path="res://.import/swarmylad-DIGGYDIGGY-Sheet.png-85fb01f39222d7c3bbf4c1e8be9eaa82.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enemies/swarmylad-ptui-Sheet.png"
-dest_files=[ "res://.import/swarmylad-ptui-Sheet.png-4d121fa825df984435638e63df15242b.stex" ]
+source_file="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-DIGGYDIGGY-Sheet.png"
+dest_files=[ "res://.import/swarmylad-DIGGYDIGGY-Sheet.png-85fb01f39222d7c3bbf4c1e8be9eaa82.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -28,7 +28,8 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
