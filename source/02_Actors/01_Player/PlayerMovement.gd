@@ -26,16 +26,6 @@ onready var safeSlide: RayCast2D = $Facing/SafeSlideDetector
 #Timers
 onready var coyoteTimer: Timer = $Timers/CoyoteTimer
 #------------------------------------------------------------------------------#
-#Ready Method
-func _ready() -> void:
-	gravity = 2 * max_jumpHeight / pow(jump_duration, 2)
-	min_jumpMotion = -sqrt(2 * gravity * min_jumpHeight)
-	max_jumpMotion = -sqrt(2 * gravity * max_jumpHeight)
-#------------------------------------------------------------------------------#
-#Applies Gravity
-func apply_gravity(delta):
-	motion.y += gravity * delta
-#------------------------------------------------------------------------------#
 #Applies Facing
 func apply_facing():
 	if mouse_global.x < self.global_position.x: flip() #Flipped
