@@ -22,6 +22,7 @@ var animations = {
 	PACKFALL = "pack_fall"
 }
 #OnReady Variables
+onready var safeFall: RayCast2D = $Facing/SafeFallDetector
 onready var safeSlide: RayCast2D = $Facing/SafeSlideDetector
 #Timers
 onready var coyoteTimer: Timer = $Timers/CoyoteTimer
@@ -93,3 +94,22 @@ func weight():
 		else: return 0.1
 	#Air Weight
 	else: return 0.1
+#------------------------------------------------------------------------------#
+#World Detection
+#Ground Detection
+func check_grounded():
+	for groundDetector in groundDetectors.get_children():
+		if groundDetector.is_colliding(): return true
+	return false
+#Wall Detection
+func check_wall():
+	if (wallDetector2.is_colliding() &&
+		ledgeDetector.is_colliding() &&
+		!safeFall.is_colliding()): return true
+	return false
+#Ledge Detection
+func check_ledge():
+	if (!ledgeDetector.is_colliding() &&
+		 wallDetector1.is_colliding() &&
+		!safeFall.is_colliding()): return true
+	return false

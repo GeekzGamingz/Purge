@@ -34,7 +34,6 @@ onready var wallDetector1: RayCast2D = $Facing/WallDetectors/WallDetector1
 onready var wallDetector2: RayCast2D = $Facing/WallDetectors/WallDetector2
 onready var ledgeDetector: RayCast2D = $Facing/WallDetectors/LedgeDetector
 onready var groundDetectors: Node2D = $Facing/GroundDetectors
-onready var safeFall: RayCast2D = $Facing/SafeFallDetector
 #Animation Nodes
 onready var spritePlayer: AnimationPlayer = $AnimationPlayers/SpritePlayer
 onready var fxPlayer: AnimationPlayer = $AnimationPlayers/EffectsPlayer
@@ -58,22 +57,3 @@ func _process(_delta: float) -> void:
 #Applies Gravity
 func apply_gravity(delta):
 	motion.y += gravity * delta
-#------------------------------------------------------------------------------#
-#World Detection
-#Ground Detection
-func check_grounded():
-	for groundDetector in groundDetectors.get_children():
-		if groundDetector.is_colliding(): return true
-	return false
-#Wall Detection
-func check_wall():
-	if (wallDetector2.is_colliding() &&
-		ledgeDetector.is_colliding() &&
-		!safeFall.is_colliding()): return true
-	return false
-#Ledge Detection
-func check_ledge():
-	if (!ledgeDetector.is_colliding() &&
-		 wallDetector1.is_colliding() &&
-		!safeFall.is_colliding()): return true
-	return false
