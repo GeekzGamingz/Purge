@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://source/02_Actors/02_Enemy/_EnemyMovement.gd" type="Script" id=2]
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/SpitterFSM.gd" type="Script" id=3]
+[ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-ptui-Sheet.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 4.5332
 height = 2.9119
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 81.0555
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -21,6 +25,46 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Facing/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Facing/Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Facing/Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -71,6 +115,7 @@ tracks/2/keys = {
 
 [node name="Spitter" type="KinematicBody2D"]
 collision_layer = 4
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="SpitterFSM" type="Node2D" parent="."]
@@ -83,8 +128,25 @@ shape = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Facing"]
 position = Vector2( 0, -6 )
-texture = ExtResource( 1 )
-hframes = 4
+texture = ExtResource( 4 )
+hframes = 6
+
+[node name="WallDetectors" type="Node2D" parent="Facing"]
+
+[node name="WallDetector" type="RayCast2D" parent="Facing/WallDetectors"]
+position = Vector2( -5, 0 )
+rotation = 4.71239
+scale = Vector2( 0.25, 1 )
+enabled = true
+cast_to = Vector2( 0, -10 )
+
+[node name="LedgeDetector" type="RayCast2D" parent="Facing/WallDetectors"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -5, 5 )
+rotation = 3.83972
+scale = Vector2( 0.25, 1 )
+enabled = true
+cast_to = Vector2( 0, -10 )
 
 [node name="GroundDetectors" type="Node2D" parent="Facing"]
 
@@ -106,19 +168,23 @@ scale = Vector2( 0.25, 1 )
 enabled = true
 cast_to = Vector2( 0, 7 )
 
-[node name="LedgeDetector" type="RayCast2D" parent="Facing"]
-modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -3.5, 5 )
-rotation = -2.44347
-scale = Vector2( 0.25, 1 )
-enabled = true
-cast_to = Vector2( 0, -5 )
+[node name="EnemyAreas" type="Node2D" parent="Facing"]
+
+[node name="Sight" type="Area2D" parent="Facing/EnemyAreas"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Facing/EnemyAreas/Sight"]
+modulate = Color( 0.490196, 1, 0, 1 )
+position = Vector2( -80, 0 )
+shape = SubResource( 8 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
 [node name="SpritePlayer" type="AnimationPlayer" parent="AnimationPlayers"]
 autoplay = "idle"
 anims/RESET = SubResource( 4 )
+anims/attack = SubResource( 7 )
 anims/idle = SubResource( 5 )
 
 [node name="EffectsPlayer" type="AnimationPlayer" parent="AnimationPlayers"]
@@ -138,3 +204,5 @@ margin_bottom = -10.0
 text = "State"
 align = 1
 valign = 1
+
+[connection signal="body_entered" from="Facing/EnemyAreas/Sight" to="." method="_on_Sight_body_entered"]

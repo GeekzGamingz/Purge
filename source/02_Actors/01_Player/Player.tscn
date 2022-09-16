@@ -3215,10 +3215,12 @@ drag_margin_right = 0.0
 [node name="Sprite_Torso" type="Sprite" parent="Facing"]
 texture = ExtResource( 19 )
 hframes = 4
+frame = 2
 
 [node name="Sprite_JumpPack" type="Sprite" parent="Facing"]
 texture = ExtResource( 1 )
 hframes = 4
+frame = 2
 
 [node name="Shoulder" type="Node2D" parent="Facing"]
 position = Vector2( -2, -4 )
@@ -3227,6 +3229,7 @@ position = Vector2( -2, -4 )
 position = Vector2( 1, 4 )
 texture = ExtResource( 2 )
 hframes = 4
+frame = 2
 
 [node name="Sprite_MzFlash" type="Sprite" parent="Facing/Shoulder/Sprite_Arms"]
 visible = false
@@ -3244,18 +3247,21 @@ __meta__ = {
 position = Vector2( 1, 4 )
 texture = ExtResource( 8 )
 hframes = 4
+frame = 2
 
 [node name="Sprite_Boomshot" type="Sprite" parent="Facing/Shoulder"]
 visible = false
 position = Vector2( 1, 4 )
 texture = ExtResource( 18 )
 hframes = 4
+frame = 2
 
 [node name="Sprite_Sweeper" type="Sprite" parent="Facing/Shoulder"]
 visible = false
 position = Vector2( 1, 4 )
 texture = ExtResource( 9 )
 hframes = 4
+frame = 2
 
 [node name="WallDetectors" type="Node2D" parent="Facing"]
 
