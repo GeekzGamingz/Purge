@@ -13,6 +13,8 @@ func _ready() -> void:
 #Processes
 func _process(_delta: float) -> void:
 	stateLabel.text = str(states.keys()[state])
+	if p.player_inSight:
+		print(p.player_POS)
 #------------------------------------------------------------------------------#
 #State Logistics
 # warning-ignore:unused_argument

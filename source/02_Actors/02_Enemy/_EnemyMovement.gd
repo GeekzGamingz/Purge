@@ -4,8 +4,17 @@ class_name EnemyMovement
 #------------------------------------------------------------------------------#
 #Variables
 var direction = 0
+var player_POS = Vector2.ZERO
+#Bool Variables
+var player_inSight: bool = false
 #OnReady Variables
-onready var ledgeDetector: RayCast2D = $Facing/LedgeDetector
+#Detectors
+onready var wallDetectors = $Facing/WallDetectors
+onready var wallDetector = $Facing/WallDetectors/WallDetector
+onready var ledgeDetector: RayCast2D = $Facing/WallDetectors/LedgeDetector
+#Areas
+onready var enemyAreas = $Facing/EnemyAreas
+onready var sight = $Facing/EnemyAreas/Sight/CollisionShape2D
 #------------------------------------------------------------------------------#
 #Applies Facing
 func apply_facing():
@@ -19,9 +28,11 @@ func flip():
 	for sprite in facing.get_children():
 		if sprite.get_class() == "Sprite": sprite.flip_h = true
 	#Detectors
-	ledgeDetector.position.x = 5.5
-	ledgeDetector.cast_to.y = 5
+	for detector in wallDetectors.get_children():
+		detector.position.x = 5.5
+		detector.cast_to.y = 10
 	ledgeDetector.rotation_degrees = -40
+	sight.position.x = 80
 #Unflip
 func unflip():
 	is_flipped = false
@@ -29,9 +40,11 @@ func unflip():
 	for sprite in facing.get_children():
 		if sprite.get_class() == "Sprite": sprite.flip_h = false
 	#Detectors
-	ledgeDetector.position.x = -5.5
-	ledgeDetector.cast_to.y = -5
+	for detector in wallDetectors.get_children():
+		detector.position.x = -5.5
+		detector.cast_to.y = -10
 	ledgeDetector.rotation_degrees = 220
+	sight.position.x = -80
 #------------------------------------------------------------------------------#
 func apply_movement():
 	#Direction
@@ -63,5 +76,12 @@ func check_grounded():
 #Wall Detection
 func check_wall():
 	if !ledgeDetector.is_colliding(): return true
-	if is_on_wall(): return true
+	if wallDetector.is_colliding(): return true
 	return false
+#------------------------------------------------------------------------------#
+#Player Detection
+#Area
+func _on_Sight_body_entered(body):
+	if body.name == "Player":
+		player_inSight = true
+		player_POS = body.global_position

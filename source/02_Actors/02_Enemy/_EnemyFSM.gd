@@ -10,6 +10,10 @@ func _ready() -> void:
 	stateAdd("idle")
 	call_deferred("stateSet", states.idle)
 #------------------------------------------------------------------------------#
+#Processes
+func _process(_delta: float) -> void:
+	stateLabel.text = str(states.keys()[state])
+#------------------------------------------------------------------------------#
 #State Logistics
 # warning-ignore:unused_argument
 func stateLogic(delta):
