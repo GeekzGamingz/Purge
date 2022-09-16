@@ -11,8 +11,8 @@ var mouse_global = Vector2.ZERO
 var mouse_local = Vector2.ZERO
 var mouse_direction = Vector2.ZERO
 #Movement
-var motion = Vector2.ZERO
 var gravity
+var motion = Vector2.ZERO
 var walk_speed = 2.5 * G.TILE_SIZE
 var run_speed = 7 * G.TILE_SIZE
 var max_speed = walk_speed
@@ -29,10 +29,6 @@ var found_ledge: bool = false
 #OnReady Variables
 onready var facing: Node2D = $Facing
 #Detectors
-onready var wallDetectors: Node2D = $Facing/WallDetectors
-onready var wallDetector1: RayCast2D = $Facing/WallDetectors/WallDetector1
-onready var wallDetector2: RayCast2D = $Facing/WallDetectors/WallDetector2
-onready var ledgeDetector: RayCast2D = $Facing/WallDetectors/LedgeDetector
 onready var groundDetectors: Node2D = $Facing/GroundDetectors
 #Animation Nodes
 onready var spritePlayer: AnimationPlayer = $AnimationPlayers/SpritePlayer
