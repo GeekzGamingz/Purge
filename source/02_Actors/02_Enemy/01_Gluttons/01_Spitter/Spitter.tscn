@@ -10,7 +10,7 @@ radius = 4.5332
 height = 2.9119
 
 [sub_resource type="CircleShape2D" id=8]
-radius = 81.0555
+radius = 49.9452
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -176,7 +176,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Facing/EnemyAreas/Sight"]
 modulate = Color( 0.490196, 1, 0, 1 )
-position = Vector2( -80, 0 )
+position = Vector2( -50, 0 )
 shape = SubResource( 8 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
