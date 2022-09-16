@@ -32,7 +32,7 @@ func flip():
 		detector.position.x = 5.5
 		detector.cast_to.y = 10
 	ledgeDetector.rotation_degrees = -40
-	sight.position.x = 80
+	sight.position.x = 50
 #Unflip
 func unflip():
 	is_flipped = false
@@ -44,7 +44,7 @@ func unflip():
 		detector.position.x = -5.5
 		detector.cast_to.y = -10
 	ledgeDetector.rotation_degrees = 220
-	sight.position.x = -80
+	sight.position.x = -50
 #------------------------------------------------------------------------------#
 func apply_movement():
 	#Direction
