@@ -22,6 +22,10 @@ var animations = {
 	PACKFALL = "pack_fall"
 }
 #OnReady Variables
+onready var wallDetectors: Node2D = $Facing/WallDetectors
+onready var wallDetector1: RayCast2D = $Facing/WallDetectors/WallDetector1
+onready var wallDetector2: RayCast2D = $Facing/WallDetectors/WallDetector2
+onready var ledgeDetector: RayCast2D = $Facing/WallDetectors/LedgeDetector
 onready var safeFall: RayCast2D = $Facing/SafeFallDetector
 onready var safeSlide: RayCast2D = $Facing/SafeSlideDetector
 #Timers

@@ -4,6 +4,8 @@ class_name EnemyMovement
 #------------------------------------------------------------------------------#
 #Variables
 var direction = 0
+#OnReady Variables
+onready var ledgeDetector: RayCast2D = $Facing/LedgeDetector
 #------------------------------------------------------------------------------#
 #Applies Facing
 func apply_facing():
@@ -17,9 +19,8 @@ func flip():
 	for sprite in facing.get_children():
 		if sprite.get_class() == "Sprite": sprite.flip_h = true
 	#Detectors
-	for detector in wallDetectors.get_children():
-		detector.position.x = 5.5
-		detector.cast_to.y = 5
+	ledgeDetector.position.x = 5.5
+	ledgeDetector.cast_to.y = 5
 	ledgeDetector.rotation_degrees = -40
 #Unflip
 func unflip():
@@ -28,9 +29,8 @@ func unflip():
 	for sprite in facing.get_children():
 		if sprite.get_class() == "Sprite": sprite.flip_h = false
 	#Detectors
-	for detector in wallDetectors.get_children():
-		detector.position.x = -5.5
-		detector.cast_to.y = -5
+	ledgeDetector.position.x = -5.5
+	ledgeDetector.cast_to.y = -5
 	ledgeDetector.rotation_degrees = 220
 #------------------------------------------------------------------------------#
 func apply_movement():
@@ -41,7 +41,6 @@ func apply_movement():
 	motion = move_and_slide(motion, FLOOR_NORMAL, SLOPE_SLIDE_STOP)
 	#World Checks
 	is_grounded = check_grounded() #Checks for Ground
-	found_ledge = check_ledge() #Checks for Ledge
 	found_wall = check_wall() #Checks for Wall
 #------------------------------------------------------------------------------#
 #Enemy Weight
@@ -63,10 +62,6 @@ func check_grounded():
 	return false
 #Wall Detection
 func check_wall():
-	if (wallDetector1.is_colliding()): return true
-	return false
-#Ledge Detection
-func check_ledge():
-	if (!ledgeDetector.is_colliding() &&
-		 wallDetector1.is_colliding()): return true
+	if !ledgeDetector.is_colliding(): return true
+	if is_on_wall(): return true
 	return false

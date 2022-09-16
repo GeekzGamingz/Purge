@@ -85,32 +85,6 @@ shape = SubResource( 1 )
 
 [node name="Facing" type="Node2D" parent="."]
 
-[node name="WallDetectors" type="Node2D" parent="Facing"]
-
-[node name="WallDetector1" type="RayCast2D" parent="Facing/WallDetectors"]
-modulate = Color( 0, 0.0627451, 1, 1 )
-position = Vector2( -3.5, -7 )
-rotation = -1.5708
-scale = Vector2( 0.25, 1 )
-enabled = true
-cast_to = Vector2( 0, -5 )
-
-[node name="WallDetector2" type="RayCast2D" parent="Facing/WallDetectors"]
-modulate = Color( 0, 0.0627451, 1, 1 )
-position = Vector2( -3.5, 6 )
-rotation = -1.5708
-scale = Vector2( 0.25, 1 )
-enabled = true
-cast_to = Vector2( 0, -5 )
-
-[node name="LedgeDetector" type="RayCast2D" parent="Facing/WallDetectors"]
-modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -3.5, -10 )
-rotation = -1.5708
-scale = Vector2( 0.25, 1 )
-enabled = true
-cast_to = Vector2( 0, -5 )
-
 [node name="GroundDetectors" type="Node2D" parent="Facing"]
 
 [node name="GroundDetector1" type="RayCast2D" parent="Facing/GroundDetectors"]
@@ -131,12 +105,13 @@ scale = Vector2( 0.25, 1 )
 enabled = true
 cast_to = Vector2( 0, 7 )
 
-[node name="SafeFallDetector" type="RayCast2D" parent="Facing"]
-modulate = Color( 0, 1, 0.109804, 1 )
-position = Vector2( 0, 3.5 )
+[node name="LedgeDetector" type="RayCast2D" parent="Facing"]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -3.5, -10 )
+rotation = -1.5708
 scale = Vector2( 0.25, 1 )
 enabled = true
-cast_to = Vector2( 0, 24 )
+cast_to = Vector2( 0, -5 )
 
 [node name="AnimationPlayers" type="Node2D" parent="."]
 
