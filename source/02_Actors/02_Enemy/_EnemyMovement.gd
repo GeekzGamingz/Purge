@@ -78,10 +78,3 @@ func check_wall():
 	if !ledgeDetector.is_colliding(): return true
 	if wallDetector.is_colliding(): return true
 	return false
-#------------------------------------------------------------------------------#
-#Player Detection
-#Area
-func _on_Sight_body_entered(body):
-	if body.name == "Player":
-		player_inSight = true
-		player_POS = body.global_position

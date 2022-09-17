@@ -2,7 +2,8 @@
 extends KinObject
 #------------------------------------------------------------------------------#
 #Variables
-var colliding = false
+#Bool Variables
+var colliding: bool = false
 #------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
