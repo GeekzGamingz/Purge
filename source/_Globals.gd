@@ -18,3 +18,6 @@ var actions = {
 	JUMP = "ui_jump",
 	SHOOT = "ui_primary_attack"
 }
+#OnReady Variables
+onready var PLAYER = get_tree().get_root().get_node(
+	"World/YSort/WorldKinematics/Player")

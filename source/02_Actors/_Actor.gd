@@ -39,6 +39,7 @@ onready var current_state = playBack.get_current_node()
 #------------------------------------------------------------------------------#
 #Ready Method
 func _ready() -> void:
+	animTree.active = true
 	gravity = 2 * max_jumpHeight / pow(jump_duration, 2)
 	min_jumpMotion = -sqrt(2 * gravity * min_jumpHeight)
 	max_jumpMotion = -sqrt(2 * gravity * max_jumpHeight)

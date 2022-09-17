@@ -6,11 +6,6 @@ class_name PlayerCombat
 var projectile_scene
 #Exported Variables
 export var projectile_speed = 500
-onready var ammoOrigin: Position2D = $Facing/Shoulder/Sprite_Arms/AmmoOrigin
-#OnReady Variables
-onready var muzzlePlayer: AnimationPlayer = $AnimationPlayers/MuzzlePlayer
-onready var boomshotTimer: Timer = $Timers/BoomshotTimer
-
 #Preloaded Scenes
 var bolt_scene = preload( #Represser RapidFire Scene
 	"res://source/03_Objects/01_Projectiles/01_Bolt/Bolt.tscn")
@@ -18,6 +13,10 @@ var slug_scene = preload( #Boomshot Scattershot Scene
 	"res://source/03_Objects/01_Projectiles/02_Slug/ScatterShot.tscn")
 var napalm_scene = preload( #FlameSweeper Napalm Scene
 	"res://source/03_Objects/01_Projectiles/03_Napalm/Napalm.tscn")
+#OnReady Variables
+onready var ammoOrigin: Position2D = $Facing/Shoulder/Sprite_Arms/AmmoOrigin
+onready var muzzlePlayer: AnimationPlayer = $AnimationPlayers/MuzzlePlayer
+onready var boomshotTimer: Timer = $Timers/BoomshotTimer
 #------------------------------------------------------------------------------#
 #Aim
 func apply_aim():
