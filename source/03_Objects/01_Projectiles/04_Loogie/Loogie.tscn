@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://source/03_Objects/01_Projectiles/04_Loogie/Loogie.gd" type="Script" id=1]
+[ext_resource path="res://source/03_Objects/01_Projectiles/_Projectiles.gd" type="Script" id=1]
 [ext_resource path="res://source/03_Objects/01_Projectiles/04_Loogie/assets/ptui-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/03_Objects/01_Projectiles/04_Loogie/assets/ptui-impact-Sheet.png" type="Texture" id=3]
 
@@ -141,11 +141,11 @@ rotation = 1.5708
 shape = SubResource( 1 )
 disabled = true
 
-[node name="LightAttack" type="Area2D" parent="Loogie"]
+[node name="Attack" type="Area2D" parent="Loogie"]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Loogie/LightAttack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Loogie/Attack"]
 rotation = 1.5708
 shape = SubResource( 6 )
 
@@ -158,5 +158,5 @@ anims/impact = SubResource( 3 )
 [node name="SelfDestruct" type="Timer" parent="Loogie"]
 wait_time = 0.5
 
-[connection signal="body_entered" from="Loogie/LightAttack" to="Loogie" method="_on_LightAttack_body_entered"]
+[connection signal="body_entered" from="Loogie/Attack" to="Loogie" method="_on_Attack_body_entered"]
 [connection signal="timeout" from="Loogie/SelfDestruct" to="Loogie" method="_on_SelfDestruct_timeout"]

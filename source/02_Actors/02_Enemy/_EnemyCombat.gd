@@ -6,6 +6,7 @@ class_name SpitterCombat
 var projectile_scene
 #Exported Variables
 export var projectile_speed = 500
+export(String, "Direct", "Arc") var projectile_type
 #Bool Variables
 var reset: bool = false
 #Dictionaries
@@ -22,7 +23,6 @@ var loogie_scene = preload( #Lougie Scene
 	"res://source/03_Objects/01_Projectiles/04_Loogie/Loogie.tscn")
 #OnReady Variables
 onready var stateTimer: Timer = $Timers/StateTimer
-onready var loogieOrigin: Position2D = $Facing/LoogieOrigin
 #------------------------------------------------------------------------------#
 #Ready
 func _ready() -> void:
@@ -43,9 +43,13 @@ func _on_Sight_body_exited(body: Node) -> void:
 #Spawn Projectile
 func spawn_projectile():
 	var projectile = projectile_scene.instance() #Sets Ammo
-	var projectile_pos = loogieOrigin.global_position #Sets PoS
+	var projectile_pos = projectileOrigin.global_position #Sets PoS
 	projectile.position = projectile_pos
-	projectile.rotation = atan2(mouse_direction.y, mouse_direction.x)
+	projectile.rotation = atan2(-player_direction.y, -player_direction.x)
 	get_tree().get_root().add_child(projectile)
 	for i in projectile.get_children():
-		i.motion = (mouse_direction * projectile_speed).rotated(i.rotation)
+		match(projectile_type):
+			"Direct": i.motion = ( #Direct Shot Toward the Player
+				player_direction * projectile_speed).rotated(i.rotation)
+			"Arc": i.motion = ( #Arc Shot Toward the Player
+				player_direction * projectile_speed).rotated(i.rotation)

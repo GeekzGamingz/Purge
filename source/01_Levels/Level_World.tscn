@@ -18,3 +18,4 @@
 [node name="WorldKinematics" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort/WorldKinematics" instance=ExtResource( 1 )]
+current_weapon = "REPRESSER"

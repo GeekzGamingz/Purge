@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://source/03_Objects/01_Projectiles/03_Napalm/Napalm.gd" type="Script" id=1]
+[ext_resource path="res://source/03_Objects/01_Projectiles/_Projectiles.gd" type="Script" id=1]
 [ext_resource path="res://source/03_Objects/01_Projectiles/03_Napalm/assets/FIYAHBAWL-impact-Sheet.png" type="Texture" id=2]
 [ext_resource path="res://source/03_Objects/01_Projectiles/03_Napalm/assets/FIYAHBAWL-Sheet.png" type="Texture" id=3]
 
@@ -138,11 +138,11 @@ rotation = 1.5708
 shape = SubResource( 1 )
 disabled = true
 
-[node name="LightAttack" type="Area2D" parent="Napalm"]
+[node name="Attack" type="Area2D" parent="Napalm"]
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Napalm/LightAttack"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Napalm/Attack"]
 position = Vector2( 10, 0 )
 rotation = 1.5708
 shape = SubResource( 6 )
@@ -157,5 +157,5 @@ anims/impact = SubResource( 3 )
 wait_time = 0.2
 one_shot = true
 
-[connection signal="body_entered" from="Napalm/LightAttack" to="Napalm" method="_on_LightAttack_body_entered"]
+[connection signal="body_entered" from="Napalm/Attack" to="Napalm" method="_on_Attack_body_entered"]
 [connection signal="timeout" from="Napalm/SelfDestruct" to="Napalm" method="_on_SelfDestruct_timeout"]

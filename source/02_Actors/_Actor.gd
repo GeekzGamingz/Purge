@@ -16,10 +16,10 @@ var motion = Vector2.ZERO
 var walk_speed = 2.5 * G.TILE_SIZE
 var run_speed = 7 * G.TILE_SIZE
 var max_speed = walk_speed
-var min_jumpMotion
-var max_jumpMotion
-var min_jumpHeight = 0.5 * G.TILE_SIZE
-var max_jumpHeight = 2.5 * G.TILE_SIZE
+var min_yMotion
+var max_yMotion
+var min_yHeight = 0.5 * G.TILE_SIZE
+var max_yHeight = 2.5 * G.TILE_SIZE
 var jump_duration = 0.5
 #Bool Variables
 var is_flipped: bool = false
@@ -40,9 +40,9 @@ onready var current_state = playBack.get_current_node()
 #Ready Method
 func _ready() -> void:
 	animTree.active = true
-	gravity = 2 * max_jumpHeight / pow(jump_duration, 2)
-	min_jumpMotion = -sqrt(2 * gravity * min_jumpHeight)
-	max_jumpMotion = -sqrt(2 * gravity * max_jumpHeight)
+	gravity = 2 * max_yHeight / pow(jump_duration, 2)
+	min_yMotion = -sqrt(2 * gravity * min_yHeight)
+	max_yMotion = -sqrt(2 * gravity * max_yHeight)
 #------------------------------------------------------------------------------#
 #Actor Processes
 func _process(_delta: float) -> void:

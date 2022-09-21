@@ -36,8 +36,8 @@ func _input(event: InputEvent) -> void:
 		states.jump:
 			#Jump Interrupt
 			if (event.is_action_released(G.actions.JUMP) &&
-				p.motion.y < p.min_jumpMotion):
-				p.motion.y = p.min_jumpMotion
+				p.motion.y < p.min_yMotion):
+				p.motion.y = p.min_yMotion
 	#Switch Weapons
 	p.apply_weapon(event)
 #------------------------------------------------------------------------------#
@@ -103,7 +103,7 @@ func stateEnter(newState, oldState):
 		states.packFlight: p.playBack.start(p.animations.FLIGHT)
 		states.packFall: p.playBack.start(p.animations.PACKFALL)
 		states.jump:
-			if p.found_wall: p.playBack.start(p.animations.JUMP)
+			if !p.safeSlide.is_colliding(): p.playBack.start(p.animations.JUMP)
 			else: p.playBack.start(p.animations.WALLJUMP)
 		states.ledge: #warning-ignore:standalone_ternary
 			p.flip() if !p.is_flipped else p.unflip()
