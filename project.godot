@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "Kinematics",
 "class": "Actor",
 "language": "GDScript",
 "path": "res://source/02_Actors/_Actor.gd"
@@ -20,9 +20,9 @@ _global_script_classes=[ {
 "path": "res://source/02_Actors/02_Enemy/_EnemyMovement.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "KinObject",
+"class": "Kinematics",
 "language": "GDScript",
-"path": "res://source/03_Objects/_KinObject.gd"
+"path": "res://source/_Kinematics.gd"
 }, {
 "base": "PlayerWeapons",
 "class": "PlayerCombat",
@@ -52,7 +52,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Actor": "",
 "EnemyMovement": "",
-"KinObject": "",
+"Kinematics": "",
 "PlayerCombat": "",
 "PlayerMovement": "",
 "PlayerWeapons": "",

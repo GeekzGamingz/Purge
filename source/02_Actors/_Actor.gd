@@ -1,26 +1,7 @@
 #Inherits KinematicBody2D Code
-extends KinematicBody2D
+extends Kinematics
 class_name Actor
 #------------------------------------------------------------------------------#
-#Constants
-const FLOOR_NORMAL = Vector2.UP
-const SLOPE_SLIDE_STOP = 25.0
-#------------------------------------------------------------------------------#
-#Variables
-var mouse_global = Vector2.ZERO
-var mouse_local = Vector2.ZERO
-var mouse_direction = Vector2.ZERO
-#Movement
-var gravity
-var motion = Vector2.ZERO
-var walk_speed = 2.5 * G.TILE_SIZE
-var run_speed = 7 * G.TILE_SIZE
-var max_speed = walk_speed
-var min_yMotion
-var max_yMotion
-var min_yHeight = 0.5 * G.TILE_SIZE
-var max_yHeight = 2.5 * G.TILE_SIZE
-var jump_duration = 0.5
 #Bool Variables
 var is_flipped: bool = false
 var is_grounded: bool = false
@@ -40,7 +21,7 @@ onready var current_state = playBack.get_current_node()
 #Ready Method
 func _ready() -> void:
 	animTree.active = true
-	gravity = 2 * max_yHeight / pow(jump_duration, 2)
+	gravity = 2 * max_yHeight / pow(air_duration, 2)
 	min_yMotion = -sqrt(2 * gravity * min_yHeight)
 	max_yMotion = -sqrt(2 * gravity * max_yHeight)
 #------------------------------------------------------------------------------#
