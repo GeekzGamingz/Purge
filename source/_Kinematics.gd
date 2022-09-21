@@ -1,6 +1,6 @@
 #Inherits KinematicBody2D Code
 extends KinematicBody2D
-class_name KinObject
+class_name Kinematics
 #------------------------------------------------------------------------------#
 #Constants
 const FLOOR_NORMAL = Vector2.UP
@@ -20,4 +20,4 @@ var min_yMotion
 var max_yMotion
 var min_yHeight = 0.5 * G.TILE_SIZE
 var max_yHeight = 2.5 * G.TILE_SIZE
-var jump_duration = 0.5
+var air_duration = 0.5

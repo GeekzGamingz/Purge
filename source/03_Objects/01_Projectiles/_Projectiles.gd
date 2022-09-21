@@ -1,5 +1,5 @@
 #Inherits KinObject Code
-extends KinObject
+extends Kinematics
 #------------------------------------------------------------------------------#
 #Variables
 #Bool Variables
