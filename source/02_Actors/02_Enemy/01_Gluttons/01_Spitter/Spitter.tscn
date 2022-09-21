@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/SpitterCombat.gd" type="Script" id=2]
+[ext_resource path="res://source/02_Actors/02_Enemy/_EnemyCombat.gd" type="Script" id=2]
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/SpitterFSM.gd" type="Script" id=3]
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-ptui-Sheet.png" type="Texture" id=4]
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-DIGGYDIGGY-Sheet.png" type="Texture" id=5]
@@ -352,6 +352,8 @@ graph_offset = Vector2( -152, -11 )
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 2 )
+projectile_speed = 250
+projectile_type = "Arc"
 
 [node name="SpitterFSM" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -365,8 +367,6 @@ shape = SubResource( 6 )
 position = Vector2( 0, -6 )
 texture = ExtResource( 4 )
 hframes = 6
-
-[node name="LoogieOrigin" type="Position2D" parent="Facing"]
 
 [node name="WallDetectors" type="Node2D" parent="Facing"]
 
@@ -406,6 +406,9 @@ enabled = true
 cast_to = Vector2( 0, 7 )
 
 [node name="EnemyAreas" type="Node2D" parent="Facing"]
+
+[node name="ProjectileOrigin" type="Position2D" parent="Facing/EnemyAreas"]
+position = Vector2( -7, -4 )
 
 [node name="Sight" type="Area2D" parent="Facing/EnemyAreas"]
 collision_layer = 4

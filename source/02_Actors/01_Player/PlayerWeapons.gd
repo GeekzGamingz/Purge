@@ -4,8 +4,9 @@ class_name PlayerWeapons
 #------------------------------------------------------------------------------#
 #Variables
 var weapon_select = 0
-var current_weapon = "REPRESSER"
 var carried_weapons = 2
+#Exported Variables
+export(String, "REPRESSER", "BOOMSHOT", "SWEEPER") var current_weapon
 #OnReady Variables
 #Sprites
 onready var shoulder: Node2D = $Facing/Shoulder

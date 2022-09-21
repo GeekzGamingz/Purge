@@ -5,6 +5,7 @@ class_name EnemyMovement
 #Variables
 var direction = 0
 var player_POS = Vector2.ZERO
+var player_direction = Vector2.ZERO
 #Bool Variables
 var player_inSight: bool = false
 #OnReady Variables
@@ -15,6 +16,12 @@ onready var ledgeDetector: RayCast2D = $Facing/WallDetectors/LedgeDetector
 #Areas
 onready var enemyAreas = $Facing/EnemyAreas
 onready var sight = $Facing/EnemyAreas/Sight/CollisionShape2D
+onready var projectileOrigin: Position2D = $Facing/EnemyAreas/ProjectileOrigin
+#------------------------------------------------------------------------------#
+#Processes
+func _process(_delta: float) -> void:
+	if player_inSight:
+		player_direction = (player_POS - self.global_position).normalized()
 #------------------------------------------------------------------------------#
 #Applies Facing
 func apply_facing():
@@ -32,6 +39,7 @@ func flip():
 		detector.position.x = 5.5
 		detector.cast_to.y = 10
 	ledgeDetector.rotation_degrees = -40
+	projectileOrigin.position.x = 7
 	sight.position.x = 50
 #Unflip
 func unflip():
@@ -44,6 +52,7 @@ func unflip():
 		detector.position.x = -5.5
 		detector.cast_to.y = -10
 	ledgeDetector.rotation_degrees = 220
+	projectileOrigin.position.x = -7
 	sight.position.x = -50
 #------------------------------------------------------------------------------#
 func apply_movement():

@@ -83,7 +83,7 @@ func apply_movement():
 #Jump
 func jump():
 	if !coyoteTimer.is_stopped(): coyoteTimer.stop()
-	motion.y = max_jumpMotion
+	motion.y = max_yMotion
 #------------------------------------------------------------------------------#
 #Player Weight
 func weight():

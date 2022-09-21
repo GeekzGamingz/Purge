@@ -12,8 +12,7 @@ func _ready() -> void:
 #Process
 func _process(_delta: float) -> void:
 	if colliding:
-		get_parent().remove_child(self)
-		queue_free()
+		get_parent().queue_free()
 #Physics Process
 func _physics_process(_delta: float) -> void:
 	motion = move_and_slide(motion)
@@ -21,7 +20,7 @@ func _physics_process(_delta: float) -> void:
 #Self Destruct
 func _on_SelfDestruct_timeout() -> void:
 	colliding = true
-func _on_LightAttack_body_entered(body: Node) -> void:
+func _on_Attack_body_entered(body: Node) -> void:
 	if body.name != "Player":
 		motion = Vector2.ZERO
 		$AnimationPlayer.play("impact")

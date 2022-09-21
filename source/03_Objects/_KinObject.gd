@@ -16,8 +16,8 @@ var gravity
 var walk_speed = 2.5 * G.TILE_SIZE
 var run_speed = 7 * G.TILE_SIZE
 var max_speed = walk_speed
-var min_jumpMotion
-var max_jumpMotion
-var min_jumpHeight = 0.5 * G.TILE_SIZE
-var max_jumpHeight = 2.5 * G.TILE_SIZE
+var min_yMotion
+var max_yMotion
+var min_yHeight = 0.5 * G.TILE_SIZE
+var max_yHeight = 2.5 * G.TILE_SIZE
 var jump_duration = 0.5

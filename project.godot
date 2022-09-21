@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "EnemyMovement",
 "class": "SpitterCombat",
 "language": "GDScript",
-"path": "res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/SpitterCombat.gd"
+"path": "res://source/02_Actors/02_Enemy/_EnemyCombat.gd"
 }, {
 "base": "Node",
 "class": "StateMachine",
