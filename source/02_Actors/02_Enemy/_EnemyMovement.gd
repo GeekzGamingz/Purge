@@ -36,7 +36,7 @@ func flip():
 		if sprite.get_class() == "Sprite": sprite.flip_h = true
 	#Detectors
 	for detector in wallDetectors.get_children():
-		detector.position.x = 5.5
+		detector.position.x = 10
 		detector.cast_to.y = 10
 	ledgeDetector.rotation_degrees = -40
 	projectileOrigin.position.x = 7
@@ -49,7 +49,7 @@ func unflip():
 		if sprite.get_class() == "Sprite": sprite.flip_h = false
 	#Detectors
 	for detector in wallDetectors.get_children():
-		detector.position.x = -5.5
+		detector.position.x = -10
 		detector.cast_to.y = -10
 	ledgeDetector.rotation_degrees = 220
 	projectileOrigin.position.x = -7

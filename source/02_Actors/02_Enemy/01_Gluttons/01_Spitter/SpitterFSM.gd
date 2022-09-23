@@ -61,9 +61,9 @@ func randomState():
 	if p.stateTimer.is_stopped():
 		p.stateTimer.start()
 		randomize()
-		var rstate = (randi() % 6)
+		var rstate = (randi() % 5)
 		match(rstate):
 			0: return states.idle
-			1, 2, 3: return states.burrowed
-			4: return states.peek
-			5: return states.ptui
+			1, 2: return states.burrowed
+			3: return states.peek
+			4: return states.ptui

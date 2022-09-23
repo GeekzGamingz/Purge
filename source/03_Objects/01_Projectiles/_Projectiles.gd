@@ -20,9 +20,9 @@ func _physics_process(_delta: float) -> void:
 #Self Destruct
 func _on_SelfDestruct_timeout() -> void:
 	colliding = true
-func _on_Attack_body_entered(body: Node) -> void:
-	if body.name != "Player":
-		motion = Vector2.ZERO
-		$AnimationPlayer.play("impact")
-		yield($AnimationPlayer, "animation_finished")
-		colliding = true
+func _on_Attack_body_entered(_body: Node) -> void:
+#	if body.name != "Player":
+	motion = Vector2.ZERO
+	$AnimationPlayer.play("impact")
+	yield($AnimationPlayer, "animation_finished")
+	colliding = true

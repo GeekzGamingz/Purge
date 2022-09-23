@@ -344,7 +344,7 @@ states/peek/node = SubResource( 29 )
 states/peek/position = Vector2( 401, 358 )
 transitions = [ "idle", "attack", SubResource( 11 ), "attack", "hide", SubResource( 14 ), "ambush", "attack", SubResource( 21 ), "ambush", "idle", SubResource( 22 ), "hide", "burrowed", SubResource( 30 ), "burrowed", "ambush", SubResource( 31 ), "burrowed", "peek", SubResource( 32 ), "peek", "burrowed", SubResource( 33 ) ]
 start_node = "idle"
-graph_offset = Vector2( -152, -11 )
+graph_offset = Vector2( -194, 16 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
@@ -365,8 +365,8 @@ shape = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Facing"]
 position = Vector2( 0, -6 )
-texture = ExtResource( 4 )
-hframes = 6
+texture = ExtResource( 6 )
+hframes = 16
 
 [node name="WallDetectors" type="Node2D" parent="Facing"]
 
@@ -379,7 +379,7 @@ cast_to = Vector2( 0, -10 )
 
 [node name="LedgeDetector" type="RayCast2D" parent="Facing/WallDetectors"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -5, 5 )
+position = Vector2( -10, 5 )
 rotation = 3.83972
 scale = Vector2( 0.25, 1 )
 enabled = true
