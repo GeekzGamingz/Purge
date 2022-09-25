@@ -49,7 +49,11 @@ func spawn_projectile():
 	get_tree().get_root().add_child(projectile)
 	for i in projectile.get_children():
 		match(projectile_type):
-			"Direct": i.motion = ( #Direct Shot Toward the Player
+			"Direct":
+				i.projectile_type = "Direct" #Sets Instanced Projectile Type
+				i.motion = ( #Direct Shot Toward the Player
 				player_direction * projectile_speed).rotated(i.rotation)
-			"Arc": i.motion = ( #Arc Shot Toward the Player
+			"Arc":
+				i.projectile_type = "Arc" #Sets Instanced Projectile Type
+				i.motion = ( #Arc Shot Toward the Player
 				player_direction * projectile_speed).rotated(i.rotation)

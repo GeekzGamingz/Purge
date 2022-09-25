@@ -20,18 +20,4 @@ onready var current_state = playBack.get_current_node()
 #------------------------------------------------------------------------------#
 #Ready Method
 func _ready() -> void:
-	animTree.active = true
-	gravity = 2 * max_yHeight / pow(air_duration, 2)
-	min_yMotion = -sqrt(2 * gravity * min_yHeight)
-	max_yMotion = -sqrt(2 * gravity * max_yHeight)
-#------------------------------------------------------------------------------#
-#Actor Processes
-func _process(_delta: float) -> void:
-	#Mouse Detection
-	mouse_global = get_global_mouse_position()
-	mouse_local = get_local_mouse_position()
-	mouse_direction = (mouse_global - self.global_position).normalized()
-#------------------------------------------------------------------------------#
-#Applies Gravity
-func apply_gravity(delta):
-	motion.y += gravity * delta
+	animTree.active = true #Activates Animation Tree
