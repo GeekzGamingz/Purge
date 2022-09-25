@@ -156,7 +156,6 @@ anims/idle = SubResource( 5 )
 anims/impact = SubResource( 3 )
 
 [node name="SelfDestruct" type="Timer" parent="Loogie"]
-wait_time = 0.5
 
 [connection signal="body_entered" from="Loogie/Attack" to="Loogie" method="_on_Attack_body_entered"]
 [connection signal="timeout" from="Loogie/SelfDestruct" to="Loogie" method="_on_SelfDestruct_timeout"]
