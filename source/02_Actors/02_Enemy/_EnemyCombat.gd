@@ -55,6 +55,10 @@ func spawn_projectile():
 				player_direction * projectile_speed).rotated(i.rotation)
 			"Arc":
 				i.projectile_type = "Arc" #Sets Instanced Projectile Type
-				var arc_height = player_POS.y - global_position.y - 12
+				var arc_apex = G.TILE_SIZE
+				var arc_height = player_POS.y - global_position.y - arc_apex
+				arc_height = min(arc_height, arc_apex)
 				i.motion = ( #Arc Shot Toward the Player
 				apply_arc(global_position, player_POS, arc_height))
+				i.motion = i.motion.limit_length(500) #Limits Speed
+				i.motion = i.motion.rotated(rand_range(-0.1, 0.1)) #Adds RNG

@@ -25,3 +25,4 @@ tile_data = PoolIntArray( -131076, 1, 3, -65540, 1, 65539, -4, 1, 65539, -65534,
 
 [node name="Spitter" parent="Kinematics" instance=ExtResource( 2 )]
 position = Vector2( 133, 14 )
+projectile_type = "Arc"

@@ -47,7 +47,7 @@ func apply_arc(origin, destination, arc_height,
 		down_gravity = up_gravity
 	var arc_motion = Vector2.ZERO
 	var arc_direction = destination - origin
-	
+	#Handles Y Axis Changes
 	if arc_direction.y > arc_height:
 		var arc_ascend = sqrt(-2 * arc_height / float(gravity))
 		var arc_descend = sqrt(2 * (arc_direction.y - arc_height) / float(gravity))
