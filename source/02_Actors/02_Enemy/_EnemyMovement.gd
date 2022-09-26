@@ -8,6 +8,7 @@ var player_POS = Vector2.ZERO
 var player_direction = Vector2.ZERO
 #Bool Variables
 var player_inSight: bool = false
+var found_transition: bool = false
 #OnReady Variables
 #Detectors
 onready var wallDetectors = $Facing/WallDetectors
@@ -87,3 +88,8 @@ func check_wall():
 	if !ledgeDetector.is_colliding(): return true
 	if wallDetector.is_colliding(): return true
 	return false
+#------------------------------------------------------------------------------#
+func toggle_transition():
+	found_transition = true
+	yield(get_tree().create_timer(0.1), "timeout")
+	found_transition = false

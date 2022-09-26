@@ -1,32 +1,14 @@
 #Inherits EnemyMovement Code
 extends EnemyMovement
-class_name SpitterCombat
+class_name EnemyCombat
 #------------------------------------------------------------------------------#
 #Variables
 var projectile_scene
 #Exported Variables
 export var projectile_speed = 500
 export(String, "Direct", "Arc") var projectile_type
-#Bool Variables
-var reset: bool = false
-#Dictionaries
-var animations = {
-	IDLE = "idle",
-	PTUI = "attack",
-	HIDE = "hide",
-	PEEK = "peek",
-	BURROWED = "burrowed",
-	AMBUSH = "ambush"
-}
-#Preloaded Scenes
-var loogie_scene = preload( #Lougie Scene
-	"res://source/03_Objects/01_Projectiles/04_Loogie/Loogie.tscn")
 #OnReady Variables
 onready var stateTimer: Timer = $Timers/StateTimer
-#------------------------------------------------------------------------------#
-#Ready
-func _ready() -> void:
-	projectile_scene = loogie_scene
 #------------------------------------------------------------------------------#
 #Area Detection
 #Body Entered

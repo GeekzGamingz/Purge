@@ -31,8 +31,8 @@ func stateLogic(delta):
 func transitions(delta):
 	match(state):
 		states.idle: if p.player_inSight: return states.ptui
-		states.ptui: return states.hide
-		states.hide, states.peek: return randomState()
+		states.ptui: if p.found_transition: return states.hide
+		states.hide, states.peek: if p.found_transition: return randomState()
 		states.burrowed: if p.stateTimer.is_stopped(): return states.peek
 #------------------------------------------------------------------------------#
 #Enter State
