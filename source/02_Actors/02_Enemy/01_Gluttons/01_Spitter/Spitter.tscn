@@ -1,7 +1,7 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-Sheet.png" type="Texture" id=1]
-[ext_resource path="res://source/02_Actors/02_Enemy/_EnemyCombat.gd" type="Script" id=2]
+[ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/Spitter.gd" type="Script" id=2]
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/SpitterFSM.gd" type="Script" id=3]
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-ptui-Sheet.png" type="Texture" id=4]
 [ext_resource path="res://source/02_Actors/02_Enemy/01_Gluttons/01_Spitter/assets/swarmylad-DIGGYDIGGY-Sheet.png" type="Texture" id=5]
@@ -73,6 +73,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id=7]
 resource_name = "attack"
 length = 0.6
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("../Facing/Sprite:texture")
 tracks/0/interp = 1
@@ -116,11 +117,14 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "spawn_projectile"
+}, {
+"args": [  ],
+"method": "toggle_transition"
 } ]
 }
 
@@ -163,6 +167,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "toggle_transition"
+} ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "hide"
@@ -202,6 +220,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "toggle_transition"
+} ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -285,6 +317,20 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "toggle_transition"
+} ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=19]
 animation = "ambush"
@@ -344,7 +390,7 @@ states/peek/node = SubResource( 29 )
 states/peek/position = Vector2( 401, 358 )
 transitions = [ "idle", "attack", SubResource( 11 ), "attack", "hide", SubResource( 14 ), "ambush", "attack", SubResource( 21 ), "ambush", "idle", SubResource( 22 ), "hide", "burrowed", SubResource( 30 ), "burrowed", "ambush", SubResource( 31 ), "burrowed", "peek", SubResource( 32 ), "peek", "burrowed", SubResource( 33 ) ]
 start_node = "idle"
-graph_offset = Vector2( -152, -11 )
+graph_offset = Vector2( -194, 16 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=2]
 
@@ -352,8 +398,6 @@ graph_offset = Vector2( -152, -11 )
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 2 )
-projectile_speed = 250
-projectile_type = "Arc"
 
 [node name="SpitterFSM" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -365,8 +409,8 @@ shape = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Facing"]
 position = Vector2( 0, -6 )
-texture = ExtResource( 4 )
-hframes = 6
+texture = ExtResource( 6 )
+hframes = 16
 
 [node name="WallDetectors" type="Node2D" parent="Facing"]
 
@@ -379,7 +423,7 @@ cast_to = Vector2( 0, -10 )
 
 [node name="LedgeDetector" type="RayCast2D" parent="Facing/WallDetectors"]
 modulate = Color( 1, 0, 0, 1 )
-position = Vector2( -5, 5 )
+position = Vector2( -10, 5 )
 rotation = 3.83972
 scale = Vector2( 0.25, 1 )
 enabled = true

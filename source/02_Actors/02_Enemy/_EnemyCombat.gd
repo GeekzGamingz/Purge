@@ -1,32 +1,14 @@
 #Inherits EnemyMovement Code
 extends EnemyMovement
-class_name SpitterCombat
+class_name EnemyCombat
 #------------------------------------------------------------------------------#
 #Variables
 var projectile_scene
 #Exported Variables
 export var projectile_speed = 500
 export(String, "Direct", "Arc") var projectile_type
-#Bool Variables
-var reset: bool = false
-#Dictionaries
-var animations = {
-	IDLE = "idle",
-	PTUI = "attack",
-	HIDE = "hide",
-	PEEK = "peek",
-	BURROWED = "burrowed",
-	AMBUSH = "ambush"
-}
-#Preloaded Scenes
-var loogie_scene = preload( #Lougie Scene
-	"res://source/03_Objects/01_Projectiles/04_Loogie/Loogie.tscn")
 #OnReady Variables
 onready var stateTimer: Timer = $Timers/StateTimer
-#------------------------------------------------------------------------------#
-#Ready
-func _ready() -> void:
-	projectile_scene = loogie_scene
 #------------------------------------------------------------------------------#
 #Area Detection
 #Body Entered
@@ -49,7 +31,16 @@ func spawn_projectile():
 	get_tree().get_root().add_child(projectile)
 	for i in projectile.get_children():
 		match(projectile_type):
-			"Direct": i.motion = ( #Direct Shot Toward the Player
+			"Direct":
+				i.projectile_type = "Direct" #Sets Instanced Projectile Type
+				i.motion = ( #Direct Shot Toward the Player
 				player_direction * projectile_speed).rotated(i.rotation)
-			"Arc": i.motion = ( #Arc Shot Toward the Player
-				player_direction * projectile_speed).rotated(i.rotation)
+			"Arc":
+				i.projectile_type = "Arc" #Sets Instanced Projectile Type
+				var arc_apex = G.TILE_SIZE
+				var arc_height = player_POS.y - global_position.y - arc_apex
+				arc_height = min(arc_height, arc_apex)
+				i.motion = ( #Arc Shot Toward the Player
+				apply_arc(global_position, player_POS, arc_height))
+				i.motion = i.motion.limit_length(500) #Limits Speed
+				i.motion = i.motion.rotated(rand_range(-0.1, 0.1)) #Adds RNG

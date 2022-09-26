@@ -17,8 +17,6 @@ func _ready() -> void:
 #Processes
 func _process(_delta: float) -> void:
 	stateLabel.text = str(states.keys()[state])
-	if p.player_inSight:
-		print(p.player_POS)
 #------------------------------------------------------------------------------#
 #State Logistics
 # warning-ignore:unused_argument
@@ -33,8 +31,8 @@ func stateLogic(delta):
 func transitions(delta):
 	match(state):
 		states.idle: if p.player_inSight: return states.ptui
-		states.ptui: return states.hide
-		states.hide, states.peek: return randomState()
+		states.ptui: if p.found_transition: return states.hide
+		states.hide, states.peek: if p.found_transition: return randomState()
 		states.burrowed: if p.stateTimer.is_stopped(): return states.peek
 #------------------------------------------------------------------------------#
 #Enter State
@@ -61,9 +59,9 @@ func randomState():
 	if p.stateTimer.is_stopped():
 		p.stateTimer.start()
 		randomize()
-		var rstate = (randi() % 6)
+		var rstate = (randi() % 5)
 		match(rstate):
 			0: return states.idle
-			1, 2, 3: return states.burrowed
-			4: return states.peek
-			5: return states.ptui
+			1, 2: return states.burrowed
+			3: return states.peek
+			4: return states.ptui
